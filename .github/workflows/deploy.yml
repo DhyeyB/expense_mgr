@@ -14,4 +14,4 @@ jobs:
           host: ${{ secrets.AWS_HOST }}
           username: ${{ secrets.AWS_USER }}
           key: ${{ secrets.AWS_KEY }}
-          script: sh /apps/auto-deploy-expense-mgr.sh
+#           script: sh /apps/auto-deploy-expense-mgr.sh
