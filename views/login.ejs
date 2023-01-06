@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <%- include('./partials/header.ejs') %>
+</head>
+<body style="background-color: lightcyan">
+    <div class="container">
+        <div class="container" >
+            <div class="filter col-md-6 mb-3 my-4">
+                <a href="/"><button class="gesture btn btn-info my-4"> <i class="fas fa-angle-double-left"></i> Back </button></a>
+            </div>
+            <div class="form-title-login text-center">
+                <h2 class="text-dark my-5"><h1>Login Form</h1></h2>
+            </div>
+            <% if(message.flag){ %>
+                <div class="alert alert-<%= message.type %>">
+                  <strong>
+                    <%= message.intro %>
+                  </strong>
+                  <%= message.message %>
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                </div>
+                <% } %>
+    <form action="/home" method="post">
+        <div class="col-md-12 mb-3 my-5 animated bounceInLeft">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control is-valid" id="exampleInputEmail1" 
+            aria-describedby="emailHelp" name= "emailaddress" placeholder="Enter email" 
+            required>
+          </div>
+      
+          <div class="col-md-12 mb-3 my-5 animated bounceInRight">
+          <label for="inputPassword5">Password</label>
+          <input type="password" id="inputPassword5" class="form-control is-valid" 
+          aria-describedby="passwordHelpBlock" name="password" placeholder="Enter password" 
+          required>
+          <small id="passwordHelpBlock" class="form-text text-muted">
+          Your password must be 8-20 characters long.
+          </small>
+          <br>
+      
+          <button class="submit-button animated bounceInUp" type="submit">Submit</button>
+    </form>
+</div>
+</body> 
+</html>

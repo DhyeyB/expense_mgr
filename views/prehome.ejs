@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome</title>
+    <%- include('./partials/header.ejs') %>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="script.js"></script>
+  </head>
+  <body style="background-color: lightcyan">
+    <div class="container">
+      <div class="form-title-account animated bounceInRight row">
+        <h2 class="text-dark"><h1>Expense Manager</h1></h2>
+      </div>
+    </div>
+
+    <div class="login-reg-panel">
+      <div class="login-info-box">
+        <label id="label-register" for="log-reg-show"
+          ><button><a href="/home">Login Page</a></button></label
+        >
+        <input type="radio" name="active-log-panel" id="log-reg-show" />
+      </div>
+
+      <div class="register-info-box animated bounceInLeft">
+        <h2>Don't have an account?</h2>
+
+        <label id="label-login" for="log-login-show"
+          ><a href="/signup">Sign Up</a></label
+        >
+        <input type="radio" name="active-log-panel" id="log-login-show" />
+      </div>
+
+      <div class="white-panel animated bounceInRight">
+        <div class="login-show">
+          <h2>Have an account?</h2>
+          <label id="label-register" for="log-reg-show"
+            ><a href="/login">Login Page</a></label
+          >
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

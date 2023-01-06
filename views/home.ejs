@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <%- include('./partials/header.ejs') %>
+</head>
+<body style="background-color: lightcyan">
+    <a href="/logout"><button class="btn btn-info btn-sm mx-4 my-3" type="submit" style="float: right;">logout</button></a>
+    <div class="container" >
+        <div class="form-title-home text-center">
+            <h2 class="text-dark my-5"><h1>All Accounts</h1></h2>
+        </div>
+        <% if(message.flag){ %>
+            <div class="alert alert-<%= message.type %>">
+                <strong>
+                    <%= message.intro %>
+                </strong>
+                <%= message.message %>
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+            <% } %>
+    <form action="/addaccount" method="post">
+        <div class="form-row">
+              <label for="validationServer01"></label>
+              <input type="text" class="form-control is-valid col-md-8" id="validationServer01" name="accountname" placeholder="Name"><br>
+              <button class="btn btn-info btn-sm mx-7 px-6" type="submit"> Add Account </button>
+        </div>
+    </form>
+  
+    <main id="site-main">
+        <div class="container h-100">
+            <div class="row h-100 justify-content-center align-items-center">
+                <div class="m-5 pb-5">
+                    <form>
+                        <div id="account-table">
+                        <table class="table">
+                            <thead class="thred-dark">
+                                <tr>
+                                    <th scope="col">Account-Name</th>
+                                    <th colspan="3" class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% if(result.length > 0 ){ result.forEach(function(data){ %>
+                                <tr> 
+                                    <td>
+                                        <%= data.accountname %>
+                                    </td>
+                                    <% if(data.accountname === userDetails.firstname + ' (Default) ') { %>
+                                        <td></td>
+                                        <td></td>
+                                    <%}
+                                    else{%>
+                                    <td>
+                                        <button type="button" data-bs-toggle="modal" data-bs-target="#updateConfirm<%= data._id %>" style=" border: none;">
+                                            <img src="https://img.icons8.com/ios-glyphs/30/000000/edit--v1.png"/>
+                                       </button>                                    
+                                     <div class="modal fade" id="updateConfirm<%= data._id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                         <div class="modal-dialog">
+                                             <div class="modal-content">
+                                                 <div class="modal-header">
+                                                     <h5 class="modal-title" id="exampleModalLabel">Update</h5>
+                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                 </div>
+                                                 <div class="modal-body">
+                                                     <p>
+                                                       Are you sure you want to Update this record?
+                                                     </p>
+                                                 </div>
+                                                 <div class="modal-footer">
+                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                     <a href="/update-account/<%= data._id %>"><button type="button" class="btn btn-primary">Yes</button></a>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                     </div>
+                                    </td>
+                                     <td>
+                                        <button type="button" data-bs-toggle="modal" data-bs-target="#deleteConfirm<%= data._id %>" style=" border: none;">
+                                            <img src="https://img.icons8.com/material/24/000000/filled-trash.png"/>
+                                       </button>                                    
+                                     <div class="modal fade" id="deleteConfirm<%= data._id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                         <div class="modal-dialog">
+                                             <div class="modal-content">
+                                                 <div class="modal-header">
+                                                     <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                 </div>
+                                                 <div class="modal-body">
+                                                     <p>
+                                                       Are you sure you want to delete this record?
+                                                     </p>
+                                                 </div>
+                                                 <div class="modal-footer">
+                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                     <a href="/delete/<%= data._id %>"><button type="button" class="btn btn-primary">Delete</button></a>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                     </div>
+                                     </td>  
+                                    <%}%>
+                                    <td>
+                                        <a href="/acc-details/<%= data._id %>" class="btn btn-info btn-sm mx-4"  type="submit" role="button">More Details <i class="fas fa-angle-double-right"></i></a>
+                                    </td>
+                                </tr>
+                        <% }) %>
+                        <% } %> 
+                </tbody>
+            </table>
+        </div>
+     </form>
+    </div> 
+    </div>
+    </div>
+</main>
+</body>
+</html>

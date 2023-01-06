@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Transaction</title>
+    <%- include('./partials/header.ejs') %>
+  </head>
+  <body style="background-color: lightcyan">
+    <div class="container">
+      <div class="filter col-md-6 mb-3 my-4">
+        <button
+          class="gesture btn btn-info my-4"
+          onclick="window.history.go(-1);"
+        >
+          <i class="fas fa-angle-double-left"></i> Back
+        </button>
+      </div>
+      <div class="form-title-signup text-center">
+        <h2 class="text-dark my-5"><h1>Update Transaction Form</h1></h2>
+      </div>
+      <br />
+      <form action="/update-transc/<%= result1._id %>" method="post">
+        <label class="mr-sm-0 animated bounceInLeft" for="examplefordate"
+          >Date</label
+        >
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group animated bounceInLeft">
+                <div class="input-group date" id="datetimepicker1">
+                  <input
+                    type="text"
+                    class="form-control is-valid"
+                    name="date"
+                    value="<%= result1.date %>"
+                    required
+                  />
+                  <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <script type="text/javascript">
+              $(function () {
+                $('#datetimepicker1').datetimepicker();
+              });
+            </script>
+          </div>
+        </div>
+        <div class="form-row align-items-center">
+          <div class="col-auto my-1 animated bounceInRight">
+            <label class="mr-sm-2" for="inlineFormCustomSelect"
+              >Prefered Type</label
+            >
+            <select
+              class="custom-select mr-sm-2 is-valid"
+              name="preferedtype"
+              id="inlineFormCustomSelect"
+              required
+            >
+              <option value="<%= result1.preferedtype %>" selected>
+                <%= result1.preferedtype %>
+              </option>
+              <% if(result1.preferedtype === "Debit"){%>
+              <option value="Credit">Credit</option>
+              <%} else{%>
+              <option value="Debit">Debit</option>
+              <% } %>
+            </select>
+          </div>
+        </div>
+        <br />
+        <div class="form-group animated bounceInLeft">
+          <label for="exampleFormControlTextarea1">Description</label>
+          <textarea
+            class="form-control is-valid"
+            name="description"
+            id="exampleFormControlTextarea1"
+            rows="3"
+            required
+          >
+<%= result1.description %></textarea
+          >
+        </div>
+        <br />
+
+        <div class="form-group animated bounceInRight">
+          <label for="exampleForaddamount">Add Amount</label>
+          <input
+            class="form-control is-valid"
+            name="addamount"
+            value="<%= result1.addamount %>"
+            type="text"
+            placeholder="Amount..."
+            required
+          /><br />
+        </div>
+        <button class="submit-button animated bounceInUp" type="submit">
+          Update
+        </button>
+      </form>
+    </div>
+  </body>
+</html>
